@@ -97,97 +97,96 @@ Run the application
 
 bash
 python main_pygame.py
-🎮 How to Run
+## 🎮 How to Run
 bash
 # Navigate to project directory
 cd dynamic-pathfinding-agent
 
-# Run the main program
-python main_pygame.py
-📖 Usage Guide
-Basic Workflow
-Generate a Maze
+  # Run the main program
+    python main_pygame.py
 
-Click "GENERATE" for random obstacles
+##📖 Usage Guide
+ # Basic Workflow
+    **Generate a Maze
+    Click "GENERATE" for random obstacles
+    Or click individual cells to place/remove obstacles manually
 
-Or click individual cells to place/remove obstacles manually
+# Select Algorithm :
 
-=> Select Algorithm :
+      Click "A MAN"* (A* with Manhattan heuristic)
+      
+      Click "A EUC"* (A* with Euclidean heuristic)
+      
+      Click "GBFS MAN" (GBFS with Manhattan heuristic)
+      
+      Click "GBFS EUC" (GBFS with Euclidean heuristic)
+   
+      Selected algorithm will be highlighted in cyan
 
-Click "A MAN"* (A* with Manhattan heuristic)
+# Set Start/Goal (Optional) :
 
-Click "A EUC"* (A* with Euclidean heuristic)
+      Click "SET START" then click any empty cell to place new start
+      
+      Click "SET GOAL" then click any empty cell to place new goal
+      
+      Click "RESET POS" to return to default positions
 
-Click "GBFS MAN" (GBFS with Manhattan heuristic)
+# Find Path :
 
-Click "GBFS EUC" (GBFS with Euclidean heuristic)
+      Click "FIND PATH" to calculate the route
+      
+      Watch as yellow frontier nodes expand and turn blue when visited
+      
+      Green path line appears when route is found
 
-Selected algorithm will be highlighted in cyan
+# Navigate :
 
-=> Set Start/Goal (Optional) :
+      Click "START" to begin agent movement
+      
+      Click "STOP" to pause
 
-Click "SET START" then click any empty cell to place new start
+      Watch the orange circle agent follow the green path
 
-Click "SET GOAL" then click any empty cell to place new goal
+# Dynamic Mode (Optional)
 
-Click "RESET POS" to return to default positions
+      Click "DYNAMIC ON" to enable dynamic obstacles
+      
+      Orange squares will appear randomly (20% chance per step)
+      
+      Agent automatically replans when path is blocked
+      
+      Watch the path recalculate in real-time
 
-=> Find Path :
+# Clear Dynamic Obstacles
 
-Click "FIND PATH" to calculate the route
+  Click "CLEAR DYN" to remove all orange dynamic obstacles
 
-Watch as yellow frontier nodes expand and turn blue when visited
-
-Green path line appears when route is found
-
-=> Navigate :
-
-Click "START" to begin agent movement
-
-Click "STOP" to pause
-
-Watch the orange circle agent follow the green path
-
-Dynamic Mode (Optional)
-
-Click "DYNAMIC ON" to enable dynamic obstacles
-
-Orange squares will appear randomly (20% chance per step)
-
-Agent automatically replans when path is blocked
-
-Watch the path recalculate in real-time
-
-Clear Dynamic Obstacles
-
-Click "CLEAR DYN" to remove all orange dynamic obstacles
-
-🎯 Button Controls
-=> Row 1 - Grid Controls :
-Button	Function
-GENERATE	Create random maze with current density setting
-CLEAR	Remove all obstacles from the grid
-GRID RxC	Change grid dimensions (click, then enter rows/cols)
-DENSITY X%	Adjust obstacle percentage (10-90%)
-=> Row 2 - Algorithm Selection :
-Button	Function
-A MAN*	Select A* algorithm with Manhattan heuristic
-A EUC*	Select A* algorithm with Euclidean heuristic
-GBFS MAN	Select GBFS algorithm with Manhattan heuristic
-GBFS EUC	Select GBFS algorithm with Euclidean heuristic
-=> Row 3 - Start/Goal Editing :
-Button	Function
-SET START	Enter start placement mode (click grid to set)
-SET GOAL	Enter goal placement mode (click grid to set)
-RESET POS	Reset start and goal to default positions
-=> Row 4 - Actions :
-Button	Function
-FIND PATH	Calculate path using selected algorithm
-START	Begin agent movement along path
-STOP	Pause agent movement
-DYNAMIC ON/OFF	Toggle dynamic obstacle spawning
-CLEAR DYN	Remove all dynamically spawned obstacles
-📁 Project Structure :
+## 🎯 Button Controls
+  # Row 1 - Grid Controls :
+      Button	Function
+     GENERATE	Create random maze with current density setting
+     CLEAR	   Remove all obstacles from the grid
+     GRID RxC	Change grid dimensions (click, then enter rows/cols)
+    DENSITY X%	Adjust obstacle percentage (10-90%)
+ # Row 2 - Algorithm Selection :
+      Button	Function
+      A MAN*	Select A* algorithm with Manhattan heuristic
+      A EUC*	Select A* algorithm with Euclidean heuristic
+      GBFS MAN	Select GBFS algorithm with Manhattan heuristic
+     GBFS EUC	Select GBFS algorithm with Euclidean heuristic
+ # Row 3 - Start/Goal Editing :
+      Button	Function
+    SET START	Enter start placement mode (click grid to set)
+    SET GOAL	Enter goal placement mode (click grid to set)
+    RESET POS	Reset start and goal to default positions
+ # Row 4 - Actions :
+      Button	Function
+    FIND PATH	Calculate path using selected algorithm
+     START	   Begin agent movement along path
+     STOP	   Pause agent movement
+    DYNAMIC	   Toggle dynamic obstacle spawning
+    CLEAR DYN	Remove all dynamically spawned obstacles
+## 📁 Project Structure :
 dynamic-pathfinding-agent/
 │
 ├── main_pygame.py          # Main GUI application with Pygame (entry point)
@@ -199,62 +198,52 @@ dynamic-pathfinding-agent/
 ├── requirements.txt        # Project dependencies (pygame only)
 └── README.md               # Project documentation (this file)
 
-🔧 How It Works
-=> Static Mode :
-  User selects algorithm and heuristic
+## ⚙️ Configuration
 
-  Grid is generated with static obstacles (black squares)
+| Parameter          | Default | Min | Max | Description                    |
+|--------------------|---------|-----|-----|--------------------------------|
+| Rows               | 12      | 5   | 20  | Number of grid rows            |
+| Columns            | 18      | 8   | 30  | Number of grid columns         |
+| Obstacle Density   | 40%     | 10% | 90% | Percentage of cells as walls   |
+| Spawn Probability  | 20%     | —   | —   | Chance of new obstacle per step|
 
-  Algorithm finds optimal path from start to goal
+---
 
-  Path is displayed as green lines connecting cell centers
+## 🔍 How It Works
 
-  Agent follows the pre-calculated path (orange circle moves)
+1. **Grid Generation** — A random grid is generated with obstacles based on the configured density, ensuring the start `(0,0)` and goal `(rows-1, cols-1)` remain clear.
 
-=> Dynamic Mode :
-   Same as static mode initially
+2. **Path Search** — The selected algorithm (A\* or GBFS) with the chosen heuristic finds a path from start to goal using 4-directional movement (up, down, left, right).
 
-   While agent moves, there's a 20% chance per step of a new obstacle appearing
+3. **Agent Movement** — The agent moves step-by-step along the computed path. If **dynamic mode** is enabled, new obstacles may randomly appear on the grid.
 
-   New obstacles appear as orange squares to distinguish them
+4. **Adaptive Replanning** — At each step, the system checks whether the remaining path is still clear. If an obstacle blocks the path, the agent **automatically replans** from its current position using the same algorithm.
 
-   If a new obstacle blocks the current path:
-
-   Agent detects blockage immediately
-
-   Status shows "Replanning... Path blocked!"
-
-   Algorithm recalculates path from current position
-
-   New path is displayed (green lines update)
-
-   Agent continues along new route
-
-Search Visualization :
+## Search Visualization :
    Frontier (Yellow): Nodes currently in the priority queue waiting to be explored
 
    Visited (Light Blue): Nodes that have already been expanded
 
    Path (Green Line): Final optimal path from start to goal
 
-🔄 Development Process :
+## Development Process :
    This project was developed iteratively in three phases:
 
-Commit 1: Core Grid and Basic Structure
+**Commit 1: Core Grid and Basic Structure
    Grid environment with obstacle density control
 
    Manhattan and Euclidean distance heuristics
 
    Basic data structures for pathfinding
 
-Commit 2: Algorithm Implementation
+**Commit 2: Algorithm Implementation
    A* search algorithm with g(n) + h(n) evaluation
 
   Greedy Best-First Search with pure heuristic evaluation
 
   Path cost calculation and node visitation tracking
 
-Commit 3: GUI and Dynamic Features
+**Commit 3: GUI and Dynamic Features
   Full Pygame interface with all control buttons
 
   Dynamic obstacle spawning (20% chance per step)
@@ -267,38 +256,35 @@ Commit 3: GUI and Dynamic Features
 
   Live metrics display
 
-❗ Troubleshooting :
-Common Issues and Solutions
-Issue	| Solution
-=> "Module not found: pygame" |	Run pip install pygame
-=> No path found | Reduce obstacle density or clear some obstacles
-=> Agent gets stuck	| Click "STOP" then "FIND PATH" again
-=> Grid too small/large |	Use "GRID" button to adjust dimensions
-=> Too many obstacles |	Reduce density percentage or click "CLEAR"
-=> Dynamic obstacles not appearing |	Make sure "DYNAMIC ON" is displayed
-=> Can't set start/goal |	Cannot place on existing obstacles
-=> Performance Tips
-   Keep grid size under 20x30 for smooth performance
+## ❗ Troubleshooting :
+   **Common Issues and Solutions
+  **Issue | Solution
+     => "Module not found: pygame" |	Run pip install pygame
+     => No path found | Reduce obstacle density or clear some obstacles
+     => Agent gets stuck	| Click "STOP" then "FIND PATH" again
+     => Grid too small/large |	Use "GRID" button to adjust dimensions
+     => Too many obstacles |	Reduce density percentage or click "CLEAR"
+     => Dynamic obstacles not appearing |	Make sure "DYNAMIC ON" is displayed
+     => Can't set start/goal |	Cannot place on existing obstacles
+     => Performance Tips | Keep grid size under 20x30 for smooth performance
 
-   Density above 70% may make paths impossible
+         Density above 70% may make paths impossible Dynamic mode works best with density 30-50%
 
-   Dynamic mode works best with density 30-50%
-
-📝 requirements.txt :
+## 📝 requirements.txt :
 text
 pygame==2.5.2
 
-📄 License :
+## 📄 License :
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-🙏 Acknowledgments :
+## 🙏 Acknowledgments :
 Thanks to the Pygame community for the excellent library
 
 Inspired by classic pathfinding algorithm visualizations
 
 Built for educational purposes to demonstrate AI search strategies
 
-📧 Contact :
+## 📧 Contact :
 hasnainbwp765@gmail.com
 
 Project Link: https://github.com/yourusername/dynamic-pathfinding-agent
