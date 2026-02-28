@@ -287,7 +287,7 @@ Built for educational purposes to demonstrate AI search strategies
 ## 📧 Contact :
 hasnainbwp765@gmail.com
 
-Project Link: https://github.com/yourusername/dynamic-pathfinding-agent
+Project Link: https://github.com/voidloop-dev/Dynamic-Pathfinding-Agent-Simulator
 
 ⭐ Star this repository if you find it useful!
 
