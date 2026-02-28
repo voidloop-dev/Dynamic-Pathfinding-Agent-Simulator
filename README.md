@@ -187,16 +187,16 @@ cd dynamic-pathfinding-agent
     DYNAMIC	   Toggle dynamic obstacle spawning
     CLEAR DYN	Remove all dynamically spawned obstacles
 ## 📁 Project Structure :
-dynamic-pathfinding-agent/
-│
-├── main_pygame.py          # Main GUI application with Pygame (entry point)
-├── grid_environment.py     # Grid management and heuristic calculations
-├── gbfs_algorithm.py       # Greedy Best-First Search implementation
-├── astar_algorithm.py      # A* Search implementation
-├── dynamic_pathfinding.py  # Dynamic obstacle handling and replanning logic
-├── button.py               # Custom button class for Pygame interface
-├── requirements.txt        # Project dependencies (pygame only)
-└── README.md               # Project documentation (this file)
+      dynamic-pathfinding-agent/
+      │
+      ├── main_pygame.py          # Main GUI application with Pygame (entry point)
+      ├── grid_environment.py     # Grid management and heuristic calculations
+      ├── gbfs_algorithm.py       # Greedy Best-First Search implementation
+      ├── astar_algorithm.py      # A* Search implementation
+      ├── dynamic_pathfinding.py  # Dynamic obstacle handling and replanning logic
+      ├── button.py               # Custom button class for Pygame interface
+      ├── requirements.txt        # Project dependencies (pygame only)
+      └── README.md               # Project documentation (this file)
 
 ## ⚙️ Configuration
 
@@ -220,55 +220,55 @@ dynamic-pathfinding-agent/
 4. **Adaptive Replanning** — At each step, the system checks whether the remaining path is still clear. If an obstacle blocks the path, the agent **automatically replans** from its current position using the same algorithm.
 
 ## Search Visualization :
-   Frontier (Yellow): Nodes currently in the priority queue waiting to be explored
-
-   Visited (Light Blue): Nodes that have already been expanded
-
-   Path (Green Line): Final optimal path from start to goal
+      Frontier (Yellow): Nodes currently in the priority queue waiting to be explored
+   
+      Visited (Light Blue): Nodes that have already been expanded
+   
+      Path (Green Line): Final optimal path from start to goal
 
 ## Development Process :
-   This project was developed iteratively in three phases:
-
-**Commit 1: Core Grid and Basic Structure
-   Grid environment with obstacle density control
-
-   Manhattan and Euclidean distance heuristics
-
-   Basic data structures for pathfinding
-
-**Commit 2: Algorithm Implementation
-   A* search algorithm with g(n) + h(n) evaluation
-
-  Greedy Best-First Search with pure heuristic evaluation
-
-  Path cost calculation and node visitation tracking
-
-**Commit 3: GUI and Dynamic Features
-  Full Pygame interface with all control buttons
-
-  Dynamic obstacle spawning (20% chance per step)
-
-  Real-time replanning when path is blocked
-
-  Start/Goal editing functionality
-
-  Visual feedback with color-coded cells
-
-  Live metrics display
+      This project was developed iteratively in three phases:
+   
+   # Commit 1: Core Grid and Basic Structure
+      Grid environment with obstacle density control
+   
+      Manhattan and Euclidean distance heuristics
+   
+      Basic data structures for pathfinding
+   
+   # Commit 2: Algorithm Implementation
+      A* search algorithm with g(n) + h(n) evaluation
+   
+     Greedy Best-First Search with pure heuristic evaluation
+   
+     Path cost calculation and node visitation tracking
+   
+   # Commit 3: GUI and Dynamic Features
+     Full Pygame interface with all control buttons
+   
+     Dynamic obstacle spawning (20% chance per step)
+   
+     Real-time replanning when path is blocked
+   
+     Start/Goal editing functionality
+   
+     Visual feedback with color-coded cells
+   
+     Live metrics display
 
 ## ❗ Troubleshooting :
-   **Common Issues and Solutions
-  **Issue | Solution
-     => "Module not found: pygame" |	Run pip install pygame
-     => No path found | Reduce obstacle density or clear some obstacles
-     => Agent gets stuck	| Click "STOP" then "FIND PATH" again
-     => Grid too small/large |	Use "GRID" button to adjust dimensions
-     => Too many obstacles |	Reduce density percentage or click "CLEAR"
-     => Dynamic obstacles not appearing |	Make sure "DYNAMIC ON" is displayed
-     => Can't set start/goal |	Cannot place on existing obstacles
-     => Performance Tips | Keep grid size under 20x30 for smooth performance
+      **Common Issues and Solutions
+     **Issue | Solution
+        => "Module not found: pygame" |	Run pip install pygame
+        => No path found | Reduce obstacle density or clear some obstacles
+        => Agent gets stuck	| Click "STOP" then "FIND PATH" again
+        => Grid too small/large |	Use "GRID" button to adjust dimensions
+        => Too many obstacles |	Reduce density percentage or click "CLEAR"
+        => Dynamic obstacles not appearing |	Make sure "DYNAMIC ON" is displayed
+        => Can't set start/goal |	Cannot place on existing obstacles
+        => Performance Tips | Keep grid size under 20x30 for smooth performance
 
-         Density above 70% may make paths impossible Dynamic mode works best with density 30-50%
+       **Density above 70% may make paths impossible Dynamic mode works best with density 30-50%**
 
 ## 📝 requirements.txt :
 text
