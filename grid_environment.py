@@ -35,10 +35,12 @@ class GridEnvironment:
             return False
         return self.grid[row][col] == 0
     
-    def get_neighbors(self, row, col):
-        """Get valid neighboring positions (4-directional movement)"""
+    def get_neighbors(self, row, col, diagonal=False):
+        """Get valid neighboring positions (4 or 8-directional movement)"""
         neighbors = []
         directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]  # right, down, left, up
+        if diagonal:
+            directions += [(1, 1), (1, -1), (-1, 1), (-1, -1)]  # diagonals
         
         for dr, dc in directions:
             new_row, new_col = row + dr, col + dc
