@@ -50,8 +50,9 @@ class GBFS:
                 self.execution_time = (time.time() - start_time) * 1000
                 return path
             
-            # Explore neighbors
-            for neighbor in self.grid.get_neighbors(current[0], current[1]):
+            # Explore neighbors (8-directional for euclidean, 4-directional for manhattan)
+            use_diagonal = (self.heuristic == 'euclidean')
+            for neighbor in self.grid.get_neighbors(current[0], current[1], diagonal=use_diagonal):
                 if neighbor not in visited_set:
                     visited_set.add(neighbor)
                     
