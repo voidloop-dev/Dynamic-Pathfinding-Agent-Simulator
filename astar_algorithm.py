@@ -49,10 +49,14 @@ class AStar:
                 self.execution_time = (time.time() - start_time) * 1000
                 return path
             
-            # Explore neighbors
-            for neighbor in self.grid.get_neighbors(current[0], current[1]):
-                # Calculate new g cost (movement cost is 1)
-                new_g_cost = g_cost + 1
+            # Explore neighbors (8-directional for euclidean, 4-directional for manhattan)
+            use_diagonal = (self.heuristic == 'euclidean')
+            for neighbor in self.grid.get_neighbors(current[0], current[1], diagonal=use_diagonal):
+                # Calculate movement cost (√2 for diagonal, 1 for cardinal)
+                dr = abs(neighbor[0] - current[0])
+                dc = abs(neighbor[1] - current[1])
+                step_cost = 1.414 if (dr + dc == 2) else 1
+                new_g_cost = g_cost + step_cost
                 
                 if neighbor not in g_costs or new_g_cost < g_costs[neighbor]:
                     g_costs[neighbor] = new_g_cost
